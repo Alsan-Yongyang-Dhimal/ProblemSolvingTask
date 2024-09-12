@@ -1,0 +1,45 @@
+
+Time Complexity:
+
+The function goes through the entire array of numbers once, from the second element to the last one.
+For each number, it checks if it's consecutive with the previous number. 
+This check and the updates to the chain length happen in a constant amount of time, meaning they don't depend on the size of the array.
+
+Since the function loops through the array only once and does a fixed amount of work for each number, the time complexity is O(n). 
+This means that if there are n numbers in the array, the time it takes grows linearly with the number of elements in the array.
+
+Space Complexity:
+
+The function uses a constant amount of extra space to store variables like longChain, currChain, and finalLongestChain. 
+These do not depend on the size of the input array.
+
+Thus, the space complexity of this function is O(1), meaning it uses a constant amount of space regardless of the size of the input array.
+
+
+function chain(num) {
+  if (num.length === 0) return 0;
+
+  let longChain = 1;
+  let currChain = 1;
+
+  for (let i = 1; i < num.length; i++) {
+    if (num[i] === num[i - 1] + 1) {
+      // Increment the chain if consecutive
+      currChain++;
+    } else {
+      // Update the longest chain
+      longChain = Math.max(longChain, currChain);
+      // Reset current chain
+      currChain = 1;
+    }
+  }
+
+  finalLongestChain = Math.max(longChain, currChain);
+
+  return finalLongestChain;
+}
+
+console.log(chain([100, 101, 102, 103, 3, 6, 200, 1, 2, 3, 2]));
+
+//output = 4
+
